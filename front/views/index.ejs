@@ -1,0 +1,59 @@
+<html>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<form action="/" method="post">
+  Book name:<br>
+  <input type="text" name="name" value="">
+  <br>
+  Price:<br>
+  <input type="text" name="price" value="">
+  <br><br>
+  <input type="submit" value="Submit">
+</form> 
+
+
+<h1>Books</h1>
+<ul>
+    <% for(var i = 0; i < temp.length; i++) { %>
+        <li>
+            <div>
+              Name: <%= temp[i].Name %>
+            </div>
+	    <div>
+                
+            </div>
+	    <div>
+              Price: <%= temp[i].Price %>
+            </div>
+	    <div>
+              <input type="button" value="Delete" onclick="fun(<%= temp[i].id %>)">
+            </div>
+        </li>
+    <% } %>
+</ul>
+
+<script>
+
+	function fun(id){
+		const Url='/delete' 
+		 $.ajax({
+                	url: Url,
+                	contentType: "application/json",
+                	type:'get',
+                	cache:false,
+                	data: {
+                  		id: id
+                	},
+                	success:  function (response) {
+                    	console.log("ok");
+                	},              
+        	});
+
+}
+
+</script>
+
+</body>
+</html>
+
